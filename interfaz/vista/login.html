@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1">
+	<title>Iniciar Sesion, Napoli</title>
+	<link rel="stylesheet" type="text/css" href="../css/estilo.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css"/>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
+	<body id="fondoLogin">
+	<header>
+		    <script>
+
+    </script>
+</header>
+	</nav>
+	
+	<div id="slider">
+    <div><img src="../img/pizza_background.jpg"/></div>
+    <div><img src="../img/pizza_slider2.jpg"/></div>
+    <div><img src="../img/pizza_slider3.jpg"/></div>
+</div>
+
+	<section id="login">	
+		<article id="login">
+			<form name="formLogin" action="" method="POST" id="diseño" class="login">
+			<br>
+			<br>
+			login - Bienvenido
+			<br>
+			<hr>	
+				<input type="text" name="usuario" id="usuario" class="text" placeholder="Escribe usuario "/>
+				<input type="password" name="contra" id="contra" class="text" placeholder="Escribe contraseña"/>
+				<br>
+				<div id="result"></div>
+				<hr>
+				<input type="submit" id="btnEntrar" name="login" value="Iniciar Sesión" class="button" />
+				<br>
+			</form>
+			<button onclick="registrar()" id="btnRegistrar"  class="button">Registrarse</button>
+			<br>
+			
+		</article>
+		
+	</section>
+
+	    <div id="dialog" title="Registrate" style="display:none;">
+	    	<form name="formRegistro" id="diseño" method="POST" action="./">
+			Registrese para acceder al sistema
+			<br>
+			<hr>	
+				<input type="text" name="nombre" id="nombre" class="text" required="required" placeholder="Escribe Nombre "/>
+				<input type="text" name="apellido" id="apellido" class="text" required="required" placeholder="apellido Apellido" />
+				<input type="text" name="telefono" id="telefono" class="text" required="required" placeholder="Escribe Telefono"/>
+				<input type="text" name="direccion" id="direccion" class="text" required="required" placeholder="Escribe Direccion"/>
+				<input type="text" name="usuario_reg" id="usuario_reg" class="text" required="required" placeholder="Escribe usuario"/>
+				<input type="password" name="contra_reg" id="contra_reg" class="text" required="required" placeholder="Escribe contraseña"/>
+				<br>
+				<hr>
+				<input type="submit" id="btnGuardar" name="login" value="Guardar" class="button" />
+				<input type="reset" id="btnReset" value="Limpiar campos" class="button" />	
+				<div id="mensaje"></div>
+				<br>
+	    	</form>
+		</div>
+    
+	<footer>
+		<!-- Derechos Reservados By:  Facebook/AmadoJesusS -->
+	</footer>
+</body>
+</html>

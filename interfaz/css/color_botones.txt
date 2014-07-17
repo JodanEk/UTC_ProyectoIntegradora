@@ -1,0 +1,6 @@
+color del boton verde fuerte: #0B610B
+sombra del boton verde bajo: #088A08
+
+color del boton rojo fuerte: #610B0B
+sombra del boton rojo bajo:#8A0808
+
