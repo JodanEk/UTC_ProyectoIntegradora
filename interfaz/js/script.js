@@ -62,6 +62,7 @@ function agregarLista (){
 
 		function focus(){
 			$("#usuario").focus();
+      
 		}
 
 		
@@ -91,9 +92,11 @@ function validaciones(){
           password=$("#contra").val();
           $.ajax({
            type: "POST",
-           url: "../vista/login.php",
-            data: "name="+username+"&pwd="+password,
+           url: "../controlador/controlador.php",
+            data: "usuario="+username+"&contra="+password,
+            
            success: function(datos){ 
+            
             if(datos==1)    {
              window.location="../index.php";
             }
@@ -102,8 +105,9 @@ function validaciones(){
             }
 
            },
-           beforeSend:function()
+           beforeSend:function(datos)
            {
+            alert(datos);
             $("#result").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"5px"});
             $("#result").html("cargando...")
            }
@@ -162,9 +166,14 @@ function validacionesRegistro(){
 
 
     function registrar() {
+
       $( "#dialog" ).dialog({
-          show: "blind",
-          hide: "explode",
+
+            show: "scale",
+            hide: "scale", 
+            resizable: "false", 
+            position: "center",
+            modal:"true",
           buttons: {
             "Cerrar" : function(){
               $(this).dialog("close");
@@ -203,96 +212,6 @@ function validacionesRegistro(){
         return false;
 
     }
-
-    function eliminarUsuario(){
-          //validacionesRegistro();
-          var dataString = 'nombre=' + nombre + '&apellido=' + apellido + '&telefono=' + telefono + '&direccion=' + direccion + '&usu=' + usuario + '&con=' + contra;
-      $.ajax({
-           type: "POST",
-           url: "../vista/registro.php",
-            data:dataString,
-           success: function(datos){ 
-            if(datos==1){
-              validacionesRegistro();
-            $("#mensaje").css({"color":"green","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("Datos guardados...");
-            }
-             else{
-
-              $("#mensaje").css({"color":"red","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("Error al insertar los datos...");
-             }
-           },
-           beforeSend:function()
-           {
-            $("#mensaje").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("guardando datos...");
-           }
-          });
-        return false;
-
-    }
-
-
-    function modificarUsuario(){
-          //validacionesRegistro();
-          var dataString = 'nombre=' + nombre + '&apellido=' + apellido + '&telefono=' + telefono + '&direccion=' + direccion + '&usu=' + usuario + '&con=' + contra;
-      $.ajax({
-           type: "POST",
-           url: "../vista/registro.php",
-            data:dataString,
-           success: function(datos){ 
-            if(datos==1){
-              validacionesRegistro();
-            $("#mensaje").css({"color":"green","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("Datos guardados...");
-            }
-             else{
-
-              $("#mensaje").css({"color":"red","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("Error al insertar los datos...");
-             }
-           },
-           beforeSend:function()
-           {
-            $("#mensaje").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("guardando datos...");
-           }
-          });
-        return false;
-
-    }
-
-    
-    function modificarUsuario(){
-          //validacionesRegistro();
-          var dataString = 'nombre=' + nombre + '&apellido=' + apellido + '&telefono=' + telefono + '&direccion=' + direccion + '&usu=' + usuario + '&con=' + contra;
-      $.ajax({
-           type: "POST",
-           url: "../vista/registro.php",
-            data:dataString,
-           success: function(datos){ 
-            if(datos==1){
-              validacionesRegistro();
-            $("#mensaje").css({"color":"green","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("Datos guardados...");
-            }
-             else{
-
-              $("#mensaje").css({"color":"red","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("Error al insertar los datos...");
-             }
-           },
-           beforeSend:function()
-           {
-            $("#mensaje").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("guardando datos...");
-           }
-          });
-        return false;
-
-    }
-
 
 /*
 
