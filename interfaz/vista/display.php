@@ -15,9 +15,7 @@
 	</header>
 	<nav>
 		<ul>
-			<li> inicio </li>
-			<li> Quienes somos </li>
-			<li> Venta </li>
+			
 			
 		</ul>
 	</nav>
@@ -27,7 +25,7 @@
 			<form name="pizzas" id="diseño" class="botones">
 			Lista de pedidos
 			<hr>
-				<input type="submit" class="button" value="Enviar" id="btnEnviar" Onclick="enviar(cobro);"/>
+				<input type="submit" class="button" value="Enviar" id="btnEnviar"/>
 				<input type="submit" class="button" value="Cancelar" id="btnCancelar"/>	
 				
 			</form>

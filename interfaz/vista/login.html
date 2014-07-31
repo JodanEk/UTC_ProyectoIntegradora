@@ -2,19 +2,14 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale-1">
+	<meta name="viewport" content="width=device-width, initial-scale=2, maximum-scale-1">
 	<title>Iniciar Sesion, Napoli</title>
 	<link rel="stylesheet" type="text/css" href="../css/estilo.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css"/>
 	<script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.js"></script>
 	<script type="text/javascript" src="../js/script.js"></script>
+</head>
 	<body id="fondoLogin">
-	<header>
-		    <script>
-
-    </script>
-</header>
+	
 	</nav>
 	
 	<div id="slider">
@@ -22,7 +17,9 @@
     <div><img src="../img/pizza_slider2.jpg"/></div>
     <div><img src="../img/pizza_slider3.jpg"/></div>
 </div>
-		    <div id="dialog" title="Registrate" style="display:none;">
+		    <div id="modalRegistro" class="modalmask">
+		    	<div class="modalbox rotate">
+		    		<a href="#close" title="Close" class="close">X</a>
 	    	<form name="formRegistro" id="diseño" method="POST" action="./">
 			Registrese para acceder al sistema
 			<br>
@@ -41,6 +38,7 @@
 				<br>
 	    	</form>
 		</div>
+	</div>
 	<section id="login">	
 		<article id="login">
 			<form name="formLogin" action="" method="POST" id="diseño" class="login">
@@ -57,7 +55,7 @@
 				<input type="submit" id="btnEntrar" name="login" value="Iniciar Sesión" class="button" />
 				<br>
 			</form>
-			<button onclick="registrar()" id="btnRegistrar"  class="button">Registrarse</button>
+			<a href="#modalRegistro" class="button" >Registrate</a>
 			<br>
 			
 		</article>

@@ -1,0 +1,87 @@
+diff --git a/interfaz/conexion/conexion_simple.php b/interfaz/conexion/conexion_simple.php
+deleted file mode 100644
+index 622c621..0000000
+--- a/interfaz/conexion/conexion_simple.php
++++ /dev/null
+@@ -1,14 +0,0 @@
+-<?php
+-$con = mysql_connect('localhost','root','') or die(mysql_error());
+- 
+-if (!$con) {
+-    echo "No es posible conectarse a la base de datos: " . mysql_error();
+-    exit;
+-}
+- 
+-if (!mysql_select_db("napoli")) {
+-    echo "La base de datos no existe u otro posible error: " . mysql_error();
+-    exit;
+-}
+-
+-?>
+\ No newline at end of file
+diff --git a/interfaz/controlador/controlador.php b/interfaz/controlador/controlador.php
+deleted file mode 100755
+index 3e63491..0000000
+--- a/interfaz/controlador/controlador.php
++++ /dev/null
+@@ -1,18 +0,0 @@
+-<?php 
+-	require("../modelo/modelo.php");
+-	$model = new modelo();
+-	//$mensajeExito="Registro Exitoso";
+-	//$mensajeError="Error al Registrar: Datos Incompletos";
+-
+-	//------------------------VALORES PARA LOGUEARSE-----------------------------------------------------
+-	if(isset($_POST["usuario"]) && isset($_POST["contra"])){
+-			if($_POST["usuario"]!="" && $_POST["contra"]!=""){
+-				$usuario = $_POST["usuario"];
+-				$contra = $_POST["contra"];
+-				$model->login($usuario,$contra);
+-			}
+-	}	
+-	
+-	
+-
+-?>
+\ No newline at end of file
+diff --git a/interfaz/modelo/modelo.php b/interfaz/modelo/modelo.php
+deleted file mode 100755
+index e8f3ab1..0000000
+--- a/interfaz/modelo/modelo.php
++++ /dev/null
+@@ -1,34 +0,0 @@
+-
+-<?php
+-	require "../conexion/conexion.php";
+-	class modelo{
+-		var $conn;
+-		var $conexion;
+-		
+-		function modelo(){
+-			$this->conexion= new  Conexion();				
+-			$this->conn=$this->conexion->conectarse();
+-		}
+-
+-		function login($nom,$contra){
+-			session_start();
+-			$uName = $_POST['name'];
+-			$pWord = sha1($_POST['pwd']);
+-			$qry = "SELECT * FROM usuario WHERE usuario='".$uName."' AND contra='".$pWord."'";
+-			$res = mysql_query($qry);
+-			$num_row = mysql_num_rows($res);
+-			$row=mysql_fetch_assoc($res);
+-
+-				if( $num_row == 1 ) {
+-				    echo 1;
+-				    $_SESSION['uName'] = $row['usuario'];
+-				    $_SESSION["autenticado"]= "SI";
+-				    //echo "<script>window.location="index.php</script>";
+-				    }
+-				else {
+-				    echo 0;
+-				}
+-
+-		}
+-	}
+-?>
+\ No newline at end of file

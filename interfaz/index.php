@@ -11,20 +11,8 @@
 	<body>
 	<header>
 		<h1><img src="img/logo_napoli.png" align="center" width="114" height="115" alt="Napoli">Punto de Venta</h1>
-		<?php
-session_start();
-if(session_start()){
-	if($_SESSION["autenticado"]= "SI"){
-	echo "Bienvenido ". $_SESSION['uName']." ";
-	echo "<a href='vista/logout.php'>Cerrar sesión</a>";
-}
 
-}
-else{
-	echo "<a href='login.html'>Iniciar sesion</a>";
-}
-?>
-		<div align="right"><a  href="vista/login.html">Login</a></div>
+		<div class="login_perfil"><a  href="vista/login.html">Login</a></div>
 	</header>
 	<nav>
 		<ul class="menu">

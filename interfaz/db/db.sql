@@ -12,8 +12,9 @@ tamano varchar(50) not null
 insert into pizza values(0,'napoli',55,'mediana');
 insert into pizza values(0,'mexicana',55,'mediana');
 insert into pizza values(0,'vegetariana',55,'mediana');
-insert into pizza values(0,'',55,'mediana');
-insert into pizza values(0,'napoli',55,'mediana');
+insert into pizza values(0,'hawaiana',55,'mediana');
+insert into pizza values(0,'alemana',55,'mediana');
+insert into pizza values(0,'alemana',55,'mediana');
 
 /*---------------------------------------------------------------------------------------*/
 

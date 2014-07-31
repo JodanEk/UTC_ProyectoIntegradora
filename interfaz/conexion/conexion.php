@@ -1,27 +1,14 @@
-<?php 
-		class Conexion{
-			var $host;
-			var $usuario;
-			var $contrasena;
-			var $baseDatos;
-		
-			function Conexion(){
-				$this->host="localhost"; 
-				$this->usuario="root"; 
-				$this->contrasena=""; 
-				$this->baseDatos="napoli"; 
-			}
-			
-			function conectarse(){
-				$enlace = mysqli_connect($this->host, $this->usuario, $this->contrasena, $this->baseDatos);
-				if($enlace){
-					//echo "Conexion exitosa";	//si la conexion fue exitosa nos muestra este mensaje como prueba, despues lo puedes poner comentarios de nuevo: //
-				}else{
-					echo die('Error de Conexión a la base de datos(' .mysqli_connect_errno(). ') '.mysqli_connect_error());
-				}
-				return($enlace);
-				mysqli_close($enlace); //cierra la conexion a nuestra base de datos, un ounto de seguridad importante.
-			}
-		}
+<?php
+$con = mysql_connect('localhost','root','') or die(mysql_error());
+ 
+if (!$con) {
+    echo "No es posible conectarse a la base de datos: " . mysql_error();
+    exit;
+}
+ 
+if (!mysql_select_db("napoli")) {
+    echo "La base de datos no existe u otro posible error: " . mysql_error();
+    exit;
+}
 
 ?>

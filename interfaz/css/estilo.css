@@ -1,8 +1,21 @@
 @charset "utf-8";
 
+.login_perfil{
+	color:black;
+	background-color: yellow;
+	list-style-type: none;
+}
+
+img{
+	cursor: pointer;
+}
 
 body {
 	background:#F2F2F2;
+}
+
+a{
+	text-decoration: none;
 }
 .text{
  padding:7px;
@@ -52,12 +65,13 @@ body#fondoLogin{
 }
 */
 header{
-	background:#610B0B;
-	font-family: 'Pacifico' , cursive;
+	background:white;
+	font-family: 'Lobster' , cursive;
 	margin: auto;
 	max-width:960px;
+	height: 100px;
 	text-align: center;
-	color: white;
+	color: #610B0B;
 	box-shadow: 5px 5px 10px rgba(20,20,20,0.5);
 	border-radius: 5px;
 }
@@ -76,7 +90,7 @@ nav{
 
 
 nav ul li  {
-
+	cursor: pointer;
     color:white;
     display:inline-block;
     padding:5px;
@@ -92,15 +106,17 @@ nav ul li a{
 	text-decoration: none;
 }
 hr{
-	color:red;
+	color:#8A0808;
 	width: 90%; 
-	border: dashed;
+	border: dashed 1px;
+
 }
 
 section{
+	padding-top: 0px;
 	background:#088A08;
 	margin: 0.5em auto;
-	width:960px;
+	max-width:960px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	text-align: center;
@@ -158,6 +174,18 @@ article{
 	margin-top: 5px;
 	padding-bottom: 5px;
 	width: 50%;
+	height: 50%;
+}
+
+article#tabla{
+	border-radius: 5px;
+	background: white;
+	display: inline-block;
+	font-family: 'Lobster' , cursive;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-bottom: 5px;
+	width: auto;
 	height: 90%;
 }
 
@@ -320,15 +348,13 @@ footer{
 	background: #D8F781;
 }
 #lista_pizza ul li a.clsEliminarElemento{
-	padding: 10px;
-	border: solid 1px #ccc;
+	padding: 6px;
 	background: #fff url(../img/eliminar.ico) center no-repeat;
 	border-radius: 3px;
 	width: 5px;
 	height: 5px;
-	border-radius: 50%;	
+	border-radius:50%;	
 	display: inline-block;
-	margin-left: 5%;
 	margin-right: 5%
 	
 }
@@ -336,7 +362,7 @@ footer{
 	border-color: #f00;
 }
 
-#diseño .button{
+.button{
 	border: none;
 	border-radius:3px;
 	color:white;
@@ -350,7 +376,7 @@ footer{
 	transition: all 0.1s ease-in ;
 }
 
-#diseño .button:hover{
+.button:hover{
 	border: none;
 	box-shadow: 1px 1px 2px #000000;
 	list-style-type:none;
@@ -401,6 +427,209 @@ article#lista_pedido {
 	margin-left: 5px;
 	margin-top: 5px;
 	padding-bottom: 5px;
-	width: 98%;
+	width: 200px;
 
+}
+
+/*---------------------------estilo de las tablas--------------------- */
+
+.tabla table { 
+ border-collapse: collapse;
+ text-align: center;
+  width: auto;
+  max-width: 860px;
+   }
+
+.tabla {
+font-family: 'Lobster' , cursive;
+ background: #fff;
+  overflow: hidden;
+   border: 1px solid #991821;
+    -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+      border-radius: 3px; 
+
+  }
+
+.tabla table td, .tabla table th {
+padding: 1px 25px;
+}
+
+.tabla table thead th {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );
+	background:-moz-linear-gradient( center top, #991821 5%, #80141C 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');
+	background-color:#991821; 
+	color:#FFFFFF; 
+	font-size: 15px; 
+	font-weight: bold; 
+	border-left: 1px solid #B01C26; 
+} 
+.tabla table thead th:first-child { 
+	border: 5px; 
+}
+
+.tabla table tbody tr { 
+	border: 1px;
+	color: #80141C; 
+	border-left: 1px solid black;
+	font-size: 12px;
+	font-weight: normal; 
+}
+
+.tabla table th { 
+	border-color: 1px solid black;
+}
+
+.tabla table tbody tr:hover {
+	border: 1px;
+	background-color: #F2F2F2; 
+	color: green; 
+	border-left: 4px solid red;
+	font-size: 12px;
+	font-weight: normal; 
+}
+
+.tabla table tbody .alt td { 
+	background: #F7CDCD; 
+	color: #80141C; 
+}
+
+.tabla table tbody .alt td:hover { 
+	background: red; 
+	color: white; 
+}
+
+.tabla table tbody td:first-child {
+	border-left: none; 
+}
+.tabla table tbody tr:last-child td { 
+	border-bottom: 1px; 
+	border:1px;
+}
+.tabla table tfoot td div { 
+	border-top: 1px solid #991821;
+	background: #F7CDCD;
+} 
+
+.tabla table tfoot td { 
+	padding: 0; 
+	font-size: 12px 
+} 
+.tabla table tfoot td div{ 
+	padding: 2px; 
+}
+
+.tabla table tfoot td ul { 
+	margin: 0; 
+	padding:0; 
+	list-style: none; 
+	text-align: right; 
+}
+.tabla table tfoot  li { 
+	display: inline; 
+}
+.tabla table tfoot li a { 
+	text-decoration: none; 
+	display: inline-block;  
+	padding: 2px 8px; 
+	margin: 1px;
+	color: #FFFFFF;
+	border: 1px solid #991821;
+	-webkit-border-radius: 3px; 
+	-moz-border-radius: 3px; 
+	border-radius: 3px; 
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );
+	background:-moz-linear-gradient( center top, #991821 5%, #80141C 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');
+	background-color:#991821; 
+}
+
+.tabla table tfoot ul.active, .tabla table tfoot ul a:hover { 
+	text-decoration: none;
+	border-color: #80141C; 
+	color: #FFFFFF; 
+	background: none; 
+	background-color:#991821;
+}
+
+/*------------- ventana modal */
+
+
+.modalmask {
+    position: fixed;
+    font-family: 'lobster',cursive;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalmask:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalbox{
+    width: 400px;
+    position: relative;
+    padding: 5px 20px 13px 20px;
+    background: #fff;
+    border-radius:3px;
+    -webkit-transition: all 100ms ease-in;
+    -moz-transition: all 100ms ease-in;
+    transition: all 100ms ease-in;
+    box-shadow: 10px 10px 10px rgba(20,20,20,0.5);
+     
+}
+.close {
+	color:white;
+	background:#8A0808;	
+    line-height: 25px;
+    position: absolute;
+    right: 1px;
+    text-align: center;
+    top: 1px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius:3px;
+ 
+}
+ 
+.close:hover {
+	color: white;
+	background:#088A08;	
+}
+
+.movedown {
+    margin: 0 auto;
+}
+.rotate {
+    margin: 10% auto;
+    -webkit-transform: scale(-5,-5);
+    transform: scale(-5,-5);
+}
+.resize {
+    margin: 10% auto;
+    width:0;
+    height:0;
+ 
+}
+.modalmask:target .movedown{       
+    margin:10% auto;
+}
+.modalmask:target .rotate{     
+    transform: rotate(360deg) scale(1,1);
+        -webkit-transform: rotate(360deg) scale(1,1);
+}
+ 
+.modalmask:target .resize{
+    width:400px;
+    height:200px;
 }
