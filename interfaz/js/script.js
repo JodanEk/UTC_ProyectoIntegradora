@@ -1,5 +1,6 @@
 $(function(){ 
-		$(".botones").on("click","input",agregarLista);
+    $("#btnEnviar").on("click",enviarVenta);
+		$(".botones").on("click","article",agregarLista);
     $("#btnGuardar").on("click",registrarUsuario);
     $("#btnGuardarP").on("click",registrarPizza);
     $(".delUser").on("click",EliminarUsuario);
@@ -9,40 +10,103 @@ $(function(){
     $(".actualizarUsuario").on("click",enviarDatoUsuario);
     $(".actualizarPizza").on("click",enviarDatoUPizza);
 		$('#lista_pizza > ul').on("click","li > a",eliminarLista);
+    $('.clsEliminarElemento').on('click',eliminarLista);
+    //$("#suma").on('click',cont);
 		//$('#btnEnviar').on("click",enviarPizza);
 		$(".menu").on("click","a",MenuIndex);
 		$(".menu").on("click","a",MenuDisplay);
 		$("#btnEntrar").on("click",login);
-    $("#btnRegistrar").on("click",registrar);
+    //$("#btnRegistrar").on("click",registrar);
     //$("#btnAgregarPizza").on("click",agregarPizza);
 		$(document).ready(focus);
 		$(document).ready(slider);
     $(document).ready(consulta);
-    $.ajaxSetup({ cache:false });
+    //$.ajaxSetup({ cache:false });
     
  
 });
 
+function enviarVenta(){
+  
+  var array = $('#formVenta').serialize();
+  var ticket = $("#ticket").val();
+
+          $.ajax({
+           type: "POST",
+           url: "../controlador/controlador_venta.php",
+            data: array,
+           success: function(dato){ 
+            if(dato==1){
+             
+              $("#espera_venta").html("Dato(s) enviado a cocina!");
+              $("#espera_venta").fadeOut(3000);
+              $("#mensaje_venta").html("Puedes realizar otra venta");
+
+              
+              $("#lista_pizza").html("<ul></ul>");
+
+            }
+           },
+           beforeSend:function()
+           {
+            $("#espera_venta").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"1px"});
+            $("#espera_venta").html("enviando datos a cocina...");
+           }
+          });
+             $("#mensaje_venta").fadeOut(5000); 
+        return false;
+      }
+
 		
 
 function agregarLista (){
+      //$('#lista_pizza').html("");
 			var lista = $('#lista_pizza > ul');
-			var liNuevoNombre = $('<li/>').html('<a class="clsEliminarElemento"></a><input type="text" value="'+this.value+'" size="5" disabled/><input type="text" value="mediana" size="5" disabled/><input type="text" value="55" size="1" disabled/><input type="text" value="1" size="3" disabled/>');
+      
+
+      var img = '<a class="clsEliminarElemento"></a>';
+      var n = '<td><input type="text" value="napoli" name="nom[]" size="5" /></td>';
+      var t = '<td><input type="text" value="mediana" name="tam[]" size="5" readonly="readonly" /></td>';
+      var p = '<td><input type="text" value="55" name="pre[]" size="1" readonly="readonly"/>';
+      var c = '<td><input type="text" value="1" name="cant[]" id="cant" size="1" readonly="readonly" /></td>';
+      var a = '<td><button onclick="sum(); return false" class="button">+</button></td>';
+      var d= '<td><button onclick="rest(); return false" class="button">-</button></td>';
+      var tr = img+n+t+p+a+c+d;
+			var liNuevoNombre = $('<li/>').html(tr);
 			lista.append(liNuevoNombre);
 		};
-
-		$(function(){ 
-		$('.clsEliminarElemento').on('click',eliminarLista);
-
-
-	});
-
+		
 		 function eliminarLista(){
-
 			var lista=$(this);
 			lista.parent().remove();
 
 	}
+
+
+  function sum(){
+    var cant = $("#cant").val();
+    var res = parseInt(cant);
+    if(res >= 10){
+      $("#cant").val(10);
+    }
+    else{
+    res = res +1;
+    $("#cant").val(res);
+    }
+  }
+
+    function rest(){
+    var cant = $("#cant").val();
+    var res = parseInt(cant);
+    if(res <= 1){
+    $("#cant").val(1);
+    }
+    else{
+    res = res -1;
+    $("#cant").val(res);
+    }
+  }
+
 
 		function MenuIndex(){
 				if(this.name == "inicio"){
@@ -60,16 +124,19 @@ function agregarLista (){
 			}
 				
 		function MenuDisplay(){
-				if(this.name == "perfil"){
-					$("#contenido").html("perfil");
-				}
+
 				if(this.name == "pizza"){
 					$("#contenido").load("pizza.php");
 				}
 				else if(this.name == "usuario"){
 					$("#contenido").load("usuario.php");
 				}
-
+        else if(this.name == "display"){
+          $("#contenido").load("display.php");
+        }
+          else if(this.name == "venta_dia"){
+          $("#contenido").load("venta_dia.php");
+        }
 			}
 
 		function focus(){
@@ -108,7 +175,7 @@ function validaciones(){
             data: "usuario="+username+"&contra="+password,
            success: function(datos){ 
              if(datos==1){
-             window.location="../index.php";
+             window.location="../vista/admin.php";
             }
             else{
             validaciones();
@@ -123,11 +190,35 @@ function validaciones(){
         return false;
 	}
 
-	function consulta(){
+	/*function consulta(){
    setInterval(function() {  
-    
-}, 2000);
-}
+       $("#consulta").html("amado");
+       
+       $.ajax({
+        type: 'POST',
+        url:'../controlador/controlador_usuario.php',
+        data: 'id_eliminar='+id_usuario,
+        cache : false,
+        success: function(datos){ 
+            //alert(datos);
+            if(datos==1){
+            //alert("Registro eliminado correctamente!")
+            fila.parent().fadeOut("slow");
+            //fila.parent().remove(fadeOut("slow"));
+
+            }
+            else{
+              alert("Registro perdido!")
+            }
+           },
+           beforeSend:function()
+           {
+            
+           }
+      });
+      return false;
+    }, 2000);
+}*/
 
   function slider(){
     $('#slider div:gt(0)').show();
@@ -138,83 +229,81 @@ function validaciones(){
 }
 
 function validacionesRegistro(){
-            nombre=$("#nombre").val();
-          apellido=$("#apellido").val();
-          telefono=$("#telefono").val();
-          direccion=$("#direccion").val();
-          usuario=$("#usuario_reg").val();
-          contra=$("#contra_reg").val();
-	var css = $("#mensaje").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"5px","display":"inline-block"});
-	           if(nombre == ""){
+            nombre=$("#nom_mod").val();
+          apellido=$("#ape_mod").val();
+          telefono=$("#tel_mod").val();
+          direccion=$("#dir_mod").val();
+          usuario=$("#usu_mod").val();
+          contra=$("#con_mod").val();
+  var css = $("#mensaje_mod").css({"background-color":"#F2F5A9","color":"black","font-size":"14px","border-radius":"5px","display":"inline-block"});
+             if(nombre == ""){
             css;
-            $("#mensaje").html("Llenar campo nombre");
-            $("#nombre").focus();         
+            $("#mensaje_mod").html("Llenar campo nombre <img src='../img/editar.png' width='16px' height='16px'> ");
+            $("#nombre").focus();  
+            return false;       
             }
             else if(apellido == ""){
             css;
-            $("#mensaje").html("Llenar campo apellido");
+            $("#mensaje_mod").html("Llenar campo apellido <img src='../img/editar.png' width='16px' height='16px'>");
             $("#apellido").focus();
+            return false;
             }
              else if(telefono == ""){
             css;
-            $("#mensaje").html("Llenar campo telefono");
+            $("#mensaje_mod").html("Llenar campo telefono <img src='../img/editar.png' width='16px' height='16px'>");
             $("#telefono").focus();
+            return false;
             }
              else if(direccion == ""){
             css;
-            $("#mensaje").html("Llenar campo direccion");
+            $("#mensaje_mod").html("Llenar campo direccion <img src='../img/editar.png' width='16px' height='16px'>");
             $("#direccion").focus();
+            return false;
             }
             else if(usuario == ""){
             css;
-            $("#mensaje").html("Llenar campo usuario");
+            $("#mensaje_mod").html("Llenar campo usuario <img src='../img/editar.png' width='16px' height='16px'>");
             $("#usuario_reg").focus();
-            }
-            else {
-            css;
-            $("#mensaje").html("LLenar campo contraseña");
-            $("#contra_reg").focus();
-            }
             return false;
+            }
+            else if(contra == ""){
+            css;
+            $("#mensaje_mod").html("LLenar campo contraseña <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#contra_reg").focus();
+            return false;
+            }
+            return true;
         }
 
-
-    function registrar() {
-
-      $( "#dialog" ).dialog({
-
-            show: "scale",
-            hide: "scale", 
-            resizable: "false", 
-            position: "center",
-           
-          buttons: {
-            "Cerrar" : function(){
-              $(this).dialog("close");
+function validacionesPizza(){
+          piz=$("#piz").val();
+          pre=$("#pre").val();
+          tam=$("#tam").val();
+	var css = $("#mensaje_p").css({"background-color":"#F2F5A9","color":"black","font-size":"14px","border-radius":"5px","display":"inline-block"});
+	           if(piz == ""){
+            css;
+            $("#mensaje_p").html("Llenar campo nombre <img src='../img/editar.png' width='16px' height='16px'> ");
+            $("#piz").focus();  
+            return false;       
             }
-          }
-
-      });
-
-    }
-
-        function agregarPizza() {
-      alert(1234);
-      $( "#dialog_pizza" ).dialog({
-            show: "scale",
-            hide: "scale", 
-            resizable: "false", 
-            position: "center",
-          buttons: {
-            "Cerrar" : function(){
-              $(this).dialog("close");
+            else if(pre == ""){
+            css;
+            $("#mensaje_p").html("Llenar campo precio <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#pre").focus();
+            return false;
             }
-          }
-      });
-    };
+             else if(tam == ""){
+            css;
+            $("#mensaje_p").html("Llenar campo tamaño <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#tam").focus();
+            return false;
+            }
+            return true;
+        }
 
           function registrarUsuario(){
 
+          if(validacionesRegistro()){
           nombre=$("#nombre").val();
           apellido=$("#apellido").val();
           telefono=$("#telefono").val();
@@ -223,7 +312,8 @@ function validacionesRegistro(){
           contra=$("#contra_reg").val();
 
           var dataString = 'nombre=' + nombre + '&apellido=' + apellido + '&telefono=' + telefono + '&direccion=' + direccion + '&usu=' + usuario + '&con=' + contra;
-      $.ajax({
+         
+            $.ajax({
            type: "POST",
            url: "../controlador/controlador_usuario.php",
             data:dataString,
@@ -231,8 +321,13 @@ function validacionesRegistro(){
            success: function(datos){ 
             //alert(datos);
             if(datos==1){
-            $("#mensaje").css({"border":"1px black dashed","color":"red","font-size":"14px","border-radius":"5px"});
-            $("#mensaje").html("Datos guardados...");
+            $("#mensaje").css({"background-color":"green","color":"black","font-size":"14px","border-radius":"5px"});
+            $("#mensaje").html("Registro correcto <img src='../img/palomita.png width='24px' height='24px' > ");
+            //$("#formRegistro").slideToggle();
+              //$("#contenido").load("usuario.php");
+            
+            
+
             }
            },
            beforeSend:function()
@@ -242,7 +337,9 @@ function validacionesRegistro(){
            }
           });
         return false;
-
+          }
+      
+          return false;
     }
 
     function EliminarUsuario(){
@@ -259,7 +356,8 @@ function validacionesRegistro(){
             //alert(datos);
             if(datos==1){
             //alert("Registro eliminado correctamente!")
-            fila.parent().remove();
+            fila.parent().fadeOut("slow");
+            //fila.parent().remove(fadeOut("slow"));
 
             }
             else{
@@ -288,6 +386,9 @@ function validacionesRegistro(){
 
 
     function modificarUsuario(){
+     
+
+
           var id_mod_u=$("#id_mod_u").val();
           var nom_mod=$("#nom_mod").val();
           var ape_mod=$("#ape_mod").val();
@@ -305,8 +406,10 @@ function validacionesRegistro(){
             //alert(datos);
             if(datos==1){
             $("#mensaje_mod").css({"border":"1px black dashed","color":"red","font-size":"14px","border-radius":"5px"});
-            $("#mensaje_mod").html("Datos modificados...");
+            $("#mensaje_mod").html("Modificacion exitosa! <img src='../img/palomita.png' width='24px' height='24px' >");
+
             }
+
            },
            beforeSend:function()
            {
@@ -315,24 +418,26 @@ function validacionesRegistro(){
            }
           });
         return false;
+      
     }
 //////////////////////// Pizza //////////////////
 
           function registrarPizza(){
+            if(validacionesPizza()){
           var piz=$("#piz").val();
           var pre=$("#pre").val();
           var tam=$("#tam").val();
           var dataString = 'piz='+ piz+'&pre=' + pre + '&tam=' + tam;
-          alert(piz);
+          //alert(piz);
       $.ajax({
            type: "POST",
            url: "../controlador/controlador_pizza.php",
             data: dataString,
            success: function(datos){ 
-            alert(datos);
+            //alert(datos);
             if(datos==1){
             $("#mensaje_p").css({"border":"1px black dashed","color":"red","font-size":"14px","border-radius":"5px"});
-            $("#mensaje_p").html("Datos guardados...");
+            $("#mensaje_p").html("Registro correcto <img src='../img/palomita.png'> ");
             }
            },
            beforeSend:function()
@@ -342,7 +447,8 @@ function validacionesRegistro(){
            }
           });
         return false;
-
+        }
+        return false;
     }
 
     function EliminarPizza(){
@@ -358,8 +464,9 @@ function validacionesRegistro(){
         success: function(datos){ 
             //alert(datos);
             if(datos==1){
-            alert("Registro eliminado correctamente!")
-            fila.parent().remove();
+            //alert("Registro eliminado correctamente!")
+            //fila.parent().remove();
+            fila.parent().fadeOut("slow");
 
             }
             else{
@@ -387,21 +494,21 @@ function validacionesRegistro(){
           var pre=$("#pre_mod_p").val();
           var tam=$("#tam_mod_p").val();
           var dataString = 'id_mod_p='+ id+'&nom_mod_p=' + nom + '&pre_mod_p=' + pre + '&tam_mod_p=' + tam;
-          alert(dataString);
+          //alert(dataString);
          $.ajax({
            type: "POST",
            url: "../controlador/controlador_pizza.php",
             data:dataString,
            success: function(datos){ 
-            alert(datos);
+            //alert(datos);
             if(datos==1){
-            $("#mensaje_pm").css({"border":"1px black dashed","color":"red","font-size":"14px","border-radius":"5px"});
-            $("#mensaje_pm").html("Datos modificados...");
+            $("#mensaje_pm").css({"color":"white","font-size":"14px","border-radius":"4px"});
+            $("#mensaje_pm").html("Modificacion exitosa! <img src='../img/palomita.png' width='24px' height='24px' >");
             }
            },
            beforeSend:function()
            {
-            $("#mensaje_pm").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"5px"});
+            $("#mensaje_pm").css({"background-color":"#8A0808","color":"white","font-size":"14px","border-radius":"1px"});
             $("#mensaje_pm").html("enviando datos...");
            }
           });

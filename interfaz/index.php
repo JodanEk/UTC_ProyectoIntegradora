@@ -11,7 +11,6 @@
 	<body>
 	<header>
 		<h1><img src="img/logo_napoli.png" align="center" width="114" height="115" alt="Napoli">Punto de Venta</h1>
-
 		<div class="login_perfil"><a  href="vista/login.html">Login</a></div>
 	</header>
 	<nav>
@@ -24,7 +23,7 @@
 	</nav>
 	<section>
 				
-		<article>
+		<!-- <article>
 			<div id="diseño" class="botones">
 			Elige pizzas a vender
 			<hr>
@@ -58,7 +57,7 @@
 	</section>
 	<section>
 		<div id="contenido"></div>
-	</section>
+	</section> -->
 	<footer>
 		<p>@AmadoJesusS</p>
 	</footer>

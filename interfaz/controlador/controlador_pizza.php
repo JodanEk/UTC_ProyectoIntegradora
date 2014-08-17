@@ -25,12 +25,4 @@
 		}
 	}
 
-	if(isset($_POST['showUsuario'])){
-		if($_POST['showUsuario'] != ""){
-			$mPizza->mostrarPizza();
-		}
-	}
-
 ?>
-
-	

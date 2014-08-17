@@ -10,33 +10,21 @@
 	
 	</head >
 	<body>
-	<header>
-		<h1><img src="../img/logo_napoli.png" align="center" width="114" height="115" alt="Napoli">Punto de Venta</h1>
-	</header>
-	<nav>
-		<ul>
-			
-			
-		</ul>
-	</nav>
-	<section>
-				
 		<article id="lista_pedido">
 			<form name="pizzas" id="diseño" class="botones">
 			Lista de pedidos
 			<hr>
-				<input type="submit" class="button" value="Enviar" id="btnEnviar"/>
-				<input type="submit" class="button" value="Cancelar" id="btnCancelar"/>	
+			<h2><marquee behavior="alternate">No hay pendientes de pizza</marquee></h2>
+			<div id="consulta">Aqui estará la consulta de la base de datos</div>
+			<hr>
+				<h1>Numero de pendientes: 0</h1>
 				
 			</form>
 		</article>
 
-	</section>
-	<section>
 
-	</section>
 	<footer>
-		@AmadoJesusS
+		
 	</footer>
 </body>
 </html>

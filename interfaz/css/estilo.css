@@ -1,9 +1,10 @@
 @charset "utf-8";
 
 .login_perfil{
+	text-align: right;
 	color:black;
-	background-color: yellow;
 	list-style-type: none;
+	
 }
 
 img{
@@ -12,6 +13,7 @@ img{
 
 body {
 	background:#F2F2F2;
+	margin: 0;
 }
 
 a{
@@ -87,6 +89,62 @@ nav{
 	border-radius: 5px;
 }
 
+ul.menu{
+	padding: 0;
+}
+
+@media all and (max-width: 480px){
+	header{
+		font-size: 12px;
+		margin: 0;
+	}
+	ul.menu {  
+		height: auto; 
+		padding: 0;
+	}
+    ul.menu > li {  
+    	padding: 0;
+    	width: 100%; 
+    	text-align: center;
+    }
+
+    ul.menu ul { 
+    	
+    }
+
+    article{
+    display: inline-block;
+	border-radius: 5px;
+	background: white;
+	font-family: 'Lobster' , cursive; 
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-bottom: 5px;
+	width: 90%;
+	
+}
+    
+     article#carrito{
+     
+    display: inline-block;
+	border-radius: 5px;
+	background: white;
+	font-family: 'Lobster' , cursive; 
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-bottom: 5px;
+	width: 90%;
+	
+}
+  
+
+	article#boton_pizza{
+	font-size: 8px;
+
+}
+
+
+}
 
 
 nav ul li  {
@@ -113,12 +171,10 @@ hr{
 }
 
 section{
-	padding-top: 0px;
-	background:#088A08;
-	margin: 0.5em auto;
-	max-width:960px;
-	padding-top: 5px;
 	padding-bottom: 5px;
+	background:#088A08;
+	margin: 0 auto;
+	max-width:960px;
 	text-align: center;
 	box-shadow: 5px 5px 10px rgba(20,20,20,0.5);
 	border-radius: 5px;
@@ -173,8 +229,8 @@ article{
 	margin-left: 5px;
 	margin-top: 5px;
 	padding-bottom: 5px;
-	width: 50%;
-	height: 50%;
+	width: 40%;
+	height: 100%;
 }
 
 article#tabla{
@@ -187,6 +243,44 @@ article#tabla{
 	padding-bottom: 5px;
 	width: auto;
 	height: 90%;
+}
+
+article#boton_pizza{
+	border: none;
+	border-radius:2px;
+	box-shadow: 2px 2px 2px #000000;
+	color:white;
+	font-family: 'lobster', cursive;
+	font-size: 12px;
+	background:#8A0808;	
+	padding-left: 5px;
+	padding-right: 5px;
+	width: auto;
+	-ms-transition: all 0.1s ease-in ;
+	-moz-transition: all 0.1s ease-in ;
+	-o-transition: all 0.1s ease-in ;
+	-webkit-transition: all 0.1s ease-in ;
+	transition: all 0.1s ease-in ;
+}
+
+article#boton_pizza:hover{
+	background:#DF0101;	
+
+}
+
+article#boton_pizza:active{
+	border: none;
+	box-shadow: 1px 1px 1px #000000;
+	list-style-type:none;
+	color: white;
+	font-family: 'lobster', cursive;
+	font-size: 12px;
+	background:#088A08;	
+	-ms-transition: all 0.1s ease-in ;
+	-moz-transition: all 0.1s ease-in ;
+	-o-transition: all 0.1s ease-in ;
+	-webkit-transition: all 0.1s ease-in ;
+	transition: all 0.1s ease-in ;
 }
 
 article#login input[type=text]:{
@@ -256,34 +350,32 @@ article#login .button:hover{
 }
 
 #lista_pizza{
-	overflow: auto;
-	height: 80px;
+	text-align: right;
+	overflow: scroll;
+	height: 70px;
 	font-family: 'Lobster' , cursive;
 	font-size: 12px;
 }
 
 article#carrito{
+	text-align: center;
 	border-radius: 5px;
 	background: white;
-	display: inline-block;
+	float: left;
 	font-family: 'Lobster' , cursive; 
-	margin-left: 5px;
-	margin-top: 5px;
-	padding-bottom: 5px;
-	width: 40%;
+	width: 50%;
+	height: 250px;
+}
+article#botones{
+
+	border-radius: 5px;
+	background: white;
+	font-family: 'Lobster' , cursive; 
+	width: 48%;
+	height: 250px;
 }
 
-aside{
-	border-radius: 5px;
-	background:black;
-	color:white;
-	float:right;
-	opacity: .8;
-	margin-right:10px;
-	margin-top: 3px;
-	width: 40%;
-	height:50px;
-}
+
 
 footer{
 	background:#0B610B;
@@ -298,10 +390,10 @@ footer{
 
 
 #lista_pizza{
-	text-align: left;
+	text-align: center;
 	width: 80%;
-	max-height: 330px;
-	overflow: auto;
+	height: 100px;
+	overflow: scroll;
 }
 
 #lista_pizza ul{
@@ -350,12 +442,12 @@ footer{
 #lista_pizza ul li a.clsEliminarElemento{
 	padding: 6px;
 	background: #fff url(../img/eliminar.ico) center no-repeat;
-	border-radius: 3px;
-	width: 5px;
-	height: 5px;
-	border-radius:50%;	
+	width: 10px;
+	height: 10px;
+	border-radius:5%;	
 	display: inline-block;
-	margin-right: 5%
+	
+	
 	
 }
 	#lista_pizza ul li a.clsEliminarElemento:hover{
@@ -397,7 +489,7 @@ footer{
 	color:white;
 	font-family: 'lobster', cursive;
 	font-size: 16px;
-	background:#8A0808;	
+	background:gray;	
 	-ms-transition: all 0.1s ease-in ;
 	-moz-transition: all 0.1s ease-in ;
 	-o-transition: all 0.1s ease-in ;
@@ -412,13 +504,29 @@ footer{
 	color: white;
 	font-family: 'lobster', cursive;
 	font-size: 16px;
-	background:yellow;	
+	background:black;	
 	-ms-transition: all 0.1s ease-in ;
 	-moz-transition: all 0.1s ease-in ;
 	-o-transition: all 0.1s ease-in ;
 	-webkit-transition: all 0.1s ease-in ;
 	transition: all 0.1s ease-in ;
 }
+
+#formVenta .button:active{
+	border: none;
+	box-shadow: 1px 1px 2px #000000;
+	list-style-type:none;
+	color: black;
+	font-family: 'lobster', cursive;
+	font-size: 16px;
+	background:white;	
+	-ms-transition: all 0.1s ease-in ;
+	-moz-transition: all 0.1s ease-in ;
+	-o-transition: all 0.1s ease-in ;
+	-webkit-transition: all 0.1s ease-in ;
+	transition: all 0.1s ease-in ;
+}
+
 article#lista_pedido {
 	border-radius: 5px;
 	background: white;
@@ -427,7 +535,7 @@ article#lista_pedido {
 	margin-left: 5px;
 	margin-top: 5px;
 	padding-bottom: 5px;
-	width: 200px;
+	width: 90%;
 
 }
 

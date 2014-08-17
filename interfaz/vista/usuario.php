@@ -8,9 +8,7 @@ $mUsuario = new ModeloUsuario();
 <html lang="es">
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/estilo.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css"/>
 	<script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.js"></script>
 	<script type="text/javascript" src="../js/script.js"></script>
 	<meta charset="utf-8"/>
 	<title></title>
@@ -48,7 +46,7 @@ $mUsuario = new ModeloUsuario();
 		<div id="modalRegistro" class="modalmask">
 		    	<div class="modalbox movedown">
 		    		<a href="#close" title="Close" class="close">X</a>
-	    	<form name="formRegistro" id="diseño" method="POST" action="./">
+	    	<form name="formRegistro" id="diseño" method="POST">
 			Registrese para acceder al sistema
 			<br>
 			<hr>	
@@ -81,7 +79,7 @@ $mUsuario = new ModeloUsuario();
 			<!-- <tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr> -->
 			
 		</tbody>
-		<tfoot><tr><td colspan="10"><div id="paging"><ul><li><a href="#"><span>Previous</span></a></li><li><a href="#" class="active"><span>1</span></a></li><li><a href="#"><span>2</span></a></li><li><a href="#"><span>3</span></a></li><li><a href="#"><span>4</span></a></li><li><a href="#"><span>5</span></a></li><li><a href="#"><span>Next</span></a></li></ul></div></tr></tfoot>
+		<!--<tfoot><tr><td colspan="10"><div id="paging"><ul><li><a href="#"><span>Previous</span></a></li><li><a href="#" class="active"><span>1</span></a></li><li><a href="#"><span>2</span></a></li><li><a href="#"><span>3</span></a></li><li><a href="#"><span>4</span></a></li><li><a href="#"><span>5</span></a></li><li><a href="#"><span>Next</span></a></li></ul></div></tr></tfoot> -->
 
 		</table>
 		</div></article>

@@ -10,9 +10,11 @@ require("../conexion/conexion.php");
 
 		if( $num_row['num_row'] == 1 ) {
 			
-		    echo "1";
+		   	echo "1";
+		    session_start();
 		    $_SESSION['user'] = $row['usuario'];
 		    $_SESSION["autenticado"]= "SI";
+		    
 
 		    }
 		else {
@@ -23,7 +25,7 @@ require("../conexion/conexion.php");
 	}
 
 	function addUsuario($nom, $ape, $tel, $dir, $usu, $con){
-	$res = mysql_query("INSERT INTO usuario VALUES(0,1,'$nom','$ape','$tel','$dir','$usu','$con',current_timestamp(),1)");
+	$res = mysql_query("INSERT INTO usuario VALUES(0,1,'$nom','$ape','$tel','$dir','$usu',sha1('$con'),current_timestamp(),1)");
 	if(mysql_affected_rows()>0){
 	echo "1";
 	}

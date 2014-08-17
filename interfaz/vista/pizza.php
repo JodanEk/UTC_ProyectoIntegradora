@@ -8,9 +8,7 @@ $mPizza = new ModeloPizza();
 <head>
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/estilo.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css"/>
 	<script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.js"></script>
 	<script type="text/javascript" src="../js/script.js"></script>
 	<meta charset="utf-8"/>
 	<title></title>
@@ -63,7 +61,7 @@ $mPizza = new ModeloPizza();
 				<input type="text" name="pre_mod_p" id="pre_mod_p" class="text" required="required" placeholder="Modifica Precio" />
 				<input type="text" name="tam_mod_p" id="tam_mod_p" class="text" required="required" placeholder="Modifica Tamaño"/>
 				<br>
-			<hr>	
+			<hr>
 				
 				
 				<br>

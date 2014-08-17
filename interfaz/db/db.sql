@@ -13,7 +13,7 @@ insert into pizza values(0,'napoli',55,'mediana');
 insert into pizza values(0,'mexicana',55,'mediana');
 insert into pizza values(0,'vegetariana',55,'mediana');
 insert into pizza values(0,'hawaiana',55,'mediana');
-insert into pizza values(0,'alemana',55,'mediana');
+insert into pizza values(0,'dionisio',55,'mediana');
 insert into pizza values(0,'alemana',55,'mediana');
 
 /*---------------------------------------------------------------------------------------*/
@@ -94,6 +94,7 @@ monto_total double(10,2) not null,
 fecha_venta timestamp not null
 );
 
+/*nsert into venta values(1,)*/
 
 /*---------------------------------------------------------------------------------------*/
 
@@ -134,5 +135,11 @@ alter table usuario
 add constraint fk_ID_status_usuario foreign key (id_status)
 references status (id_status) on delete cascade on update cascade;
 
-
+create table pizza_p(
+	id_p int primary key auto_increment,
+	nombre varchar(50) not null,
+	tamano varchar(50) not null,
+	precio int(3) not null,
+	cantidad int(2) not null
+	);
 

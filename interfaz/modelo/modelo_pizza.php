@@ -58,5 +58,22 @@ require("../conexion/conexion.php");
 			
 		}
 
+		function pizzas(){
+			$qry=mysql_query("select * from pizza order by nombre asc");
+			
+			while($row=mysql_fetch_array($qry)){
+				echo("<article id='boton_pizza'>");
+					//echo "<td align='center'>".$row["id_pizza"]."</td>";
+					//echo <input type='text' value='' name='nom' size='5' disabled/>";
+					echo "<td align='center'>".$row["nombre"]."</td><br>";
+					echo "<td align='center'>".$row["precio"]."</td><br>";	
+					echo "<td align='center'>".$row["tamano"]."</td><br>";
+					//echo "<td align='center'>".$row["contra"]."</td>";
+					//echo "<td class='eliminar' align='center' class=''><img src='../img/eliminar.ico' width='24px' name='".$row["id_pizza"]."' height='24px' class='delPizza'></td>";
+					//echo "<td class=''><a href='#modalUpdPiz'><img src='../img/editar.png' width='24px' name='".$row["id_pizza"]."' height='24px' class='actualizarPizza'></a></td>";
+				echo("</article>");
+			}
+		}
+
 	}
 ?>
