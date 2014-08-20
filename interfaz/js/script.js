@@ -167,6 +167,7 @@ function validaciones(){
         }
 
 	function login() {	
+    alert(123);
 		 username=$("#usuario").val();
           password=$("#contra").val();
           $.ajax({
@@ -174,6 +175,7 @@ function validaciones(){
            url: "../controlador/controlador_usuario.php",
             data: "usuario="+username+"&contra="+password,
            success: function(datos){ 
+            
              if(datos==1){
              window.location="../vista/admin.php";
             }
