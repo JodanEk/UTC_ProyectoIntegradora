@@ -62,12 +62,17 @@ require("../conexion/conexion.php");
 			$qry=mysql_query("select * from pizza order by nombre asc");
 			
 			while($row=mysql_fetch_array($qry)){
-				echo("<article id='boton_pizza'>");
+				echo("<article id='boton_pizza' style='cursor:pointer;'>");
 					//echo "<td align='center'>".$row["id_pizza"]."</td>";
 					//echo <input type='text' value='' name='nom' size='5' disabled/>";
-					echo "<td align='center'>".$row["nombre"]."</td><br>";
-					echo "<td align='center'>".$row["precio"]."</td><br>";	
-					echo "<td align='center'>".$row["tamano"]."</td><br>";
+					echo "<table>";
+					echo "<tr id='pizza_tr'>";
+					echo "<td align='center'>".$row["nombre"]."</td>";
+					echo "<td align='center'>".$row["precio"]."</td>";	
+					echo "<td align='center'>".$row["tamano"]."</td>";
+					echo "<td class=''><img src='../img/add.png' width='24px' height='24px' class='add_pizza'></td>";
+					echo "</tr>";
+					echo "</table>";
 					//echo "<td align='center'>".$row["contra"]."</td>";
 					//echo "<td class='eliminar' align='center' class=''><img src='../img/eliminar.ico' width='24px' name='".$row["id_pizza"]."' height='24px' class='delPizza'></td>";
 					//echo "<td class=''><a href='#modalUpdPiz'><img src='../img/editar.png' width='24px' name='".$row["id_pizza"]."' height='24px' class='actualizarPizza'></a></td>";

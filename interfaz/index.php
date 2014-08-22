@@ -10,54 +10,19 @@
 	</head >
 	<body>
 	<header>
-		<h1><img src="img/logo_napoli.png" align="center" width="114" height="115" alt="Napoli">Punto de Venta</h1>
+		<h1><img src="img/logo_napoli.png" align="left" width="114" height="115" alt="Napoli">Punto de Venta</h1>
 		<div class="login_perfil"><a  href="vista/login.html">Login</a></div>
 	</header>
 	<nav>
 		<ul class="menu">
 			<li id="inicio"><a name="inicio" href="#">inicio</a></li>
-			<li id="somos"><a name="somos" href="#">Quienes somos</a></li>
+			<li id="somos"><a name="somos" href="#">Conocemé</a></li>
 			<li id="producto"><a name="producto" href="#">Productos</a></li>
-			<li id="contacto"><a name="contacto" href="#">Contacto</a></li>
+			<li id="contacto"><a name="contacto" href="#">Contactamé</a></li>
 		</ul>
 	</nav>
 	<section>
-				
-		<!-- <article>
-			<div id="diseño" class="botones">
-			Elige pizzas a vender
-			<hr>
-				<input type="button"  class="button" value="Mexicana"/>
-				<input type="button"  class="button" value="Hawaiana"/>
-				<input type="button"  class="button" value="Napoli"/>
-				<input type="button"  class="button" value="Alemana"/>
-				<input type="button"  class="button" value="Vegetariana"/>
-				<input type="button"  class="button" value="Venecia" />
-				<input type="button"  class="button" value="Dionisio" />
-			<hr>
-			Ingredientes extras
-			<br>	
 
-				<input type="submit" class="button" value="Queso" />
-				<input type="submit" class="button" value="otro" />
-			</div>
-		</article>
-		<article id="carrito">
-			<form name="cobro" id="formVenta">
-			Ticket:  60 detalle de la Venta actual<hr>
-			<div id="lista_pizza">
-				<ul></ul>
-			</div>
-			<hr>
-
-				<input type="submit" class="button" value="Enviar" id="btnEnviar"/>
-				<input type="submit" class="button" value="Cancelar" id="btnCancelar"/><div id="espera"></div>	
-			</form>
-			</article>
-	</section>
-	<section>
-		<div id="contenido"></div>
-	</section> -->
 	<footer>
 		<p>@AmadoJesusS</p>
 	</footer>

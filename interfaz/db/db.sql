@@ -138,8 +138,23 @@ references status (id_status) on delete cascade on update cascade;
 create table pizza_p(
 	id_p int primary key auto_increment,
 	nombre varchar(50) not null,
-	tamano varchar(50) not null,
 	precio int(3) not null,
-	cantidad int(2) not null
+	tamano varchar(50) not null,
+	cantidad int(2) not null,
+	ticket int(3) not null,
+	usuario varchar(50) not null,
+	fecha_venta timestamp,
+	status int(3) not null
+	);
+
+create table pizza_p(
+	id_p int primary key auto_increment,
+	nombre varchar(50) not null,
+	precio int(3) not null,
+	tamano varchar(50) not null,
+	cantidad int(2) not null,
+	ticket int(3) not null,
+	fecha_venta timestamp,
+	status int(3) not null
 	);
 

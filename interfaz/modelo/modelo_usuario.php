@@ -4,17 +4,20 @@ require("../conexion/conexion.php");
 		class ModeloUsuario{
 
 		function login($usuario,$contra){
-		$qry = "SELECT count(1) as num_row FROM usuario WHERE usuario='".$usuario."' AND contra='".$contra."' ";
+		$qry = "SELECT * FROM usuario WHERE usuario='".$usuario."' AND contra='".$contra."'";
 		$res = mysql_query($qry);
-		$num_row = mysql_fetch_array($res);
+		$num_row = mysql_num_rows($res);
+		$row=mysql_fetch_assoc($res);
 
-		if( $num_row['num_row'] == 1 ) {
-			
-		   	echo "1";
-		    session_start();
-		    $_SESSION['user'] = $row['usuario'];
-		    $_SESSION["autenticado"]= "SI";
-		    
+
+		if( $num_row == 1 ) {
+			session_start();
+		   	echo 1;
+		    $_SESSION['usuario'] = $row['usuario'];
+		    $_SESSION['nombre'] = $row['nombre'];
+		    $_SESSION['apellido'] = $row['apellido'];
+		    //$_SESSION["autenticado"]= "SI";
+		   //header("location:../vista/admin.php")
 
 		    }
 		else {

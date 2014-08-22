@@ -1,16 +1,13 @@
 <?php
 require("../modelo/modelo_pizza.php");
 $mPizza = new ModeloPizza();
-	/*session_start();
-			if(!isset($_SESSION['user'])){
-				header("location:login.html");
-			}
-		else
-			{
-				
-	*/
 
+	session_start();
+	if(!isset($_SESSION['usuario'])){
+	header("location:login.html");
+	}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,62 +22,55 @@ $mPizza = new ModeloPizza();
 	</head >
 	<body>
 	<header>
-		<h1><img src="../img/logo_napoli.png" align="center" width="114" height="115" alt="Napoli">Punto de Venta</h1>
-		<div id="sesion">
+		<h1><img src="../img/logo_napoli.png" align="left" width="114" height="115" alt="Napoli">Punto de Venta</h1>
+		<div id="sesion" style="text-align:left;">
 		<?php 
-		/*echo "Bienvenido :" .$_SESSION['user'];*/
+		echo "<h4>Bienvenido!,   "  .$_SESSION['nombre'] . "," .$_SESSION['apellido'] . "    <a href='logout.php' class='button'>salir</a></h4>"; 
+		echo "<input type='hidden' value=".$_SESSION['nombre'] . " id='user' name='user' />"; 
 		?>
 		</div>
 	</header>
 	<nav>
 		<ul class="menu">
 			<li id="venta"><a  name="venta" href="admin.php">Venta</a></li>
-			<li id="pizza"><a name="pizza" href="#">Pizzas</a></li>
-			<li id="usuario"><a name="usuario" href="#">Usuarios</a></li>
+			<li id="pizza"><a name="pizza" href="pizza.php">Pizzas</a></li>
+			<li id="usuario"><a name="usuario" href="usuario.php">Usuarios</a></li>
 			<li id="display"><a name="display" href="#">Display</a></li>
 			<li id="venta_dia"><a name="venta_dia" href="#">Venta Dia</a></li>
 		</ul>
 	</nav>
 	<section>
 		<div id="contenido">
-					<article id="botones">
+			<article id="botones">
 			<div id="diseño" class="botones">
-			Elige pizzas a vender
+			Elige pizzas a vender 
 			<hr>
-				<!--<input type="button"  class="button" value="Mexicana"/>
-				<input type="button"  class="button" value="Hawaiana"/>
-				<input type="button"  class="button" value="Napoli"/>
-				<input type="button"  class="button" value="Alemana"/>
-				<input type="button"  class="button" value="Vegetariana"/>
-				<input type="button"  class="button" value="Venecia" />
-				<input type="button"  class="button" value="Dionisio" /> -->
-				<?php echo $mPizza->pizzas();?>
-
-
+			<?php echo $mPizza->pizzas();?>
 			<hr>
-			Ingredientes extras
-			<br>	
-
-				<input type="submit" class="button" value="Queso" />
-				<input type="submit" class="button" value="otro" />
 			</div>
 		</article>
-		<article id="carrito">
-			Ticket No. : <input type="text" value="4" readonly="readonly" id="ticket" size="3" disabled	/><br> Detalle de la Venta actual<hr>
-
+		<article id="carrito" >
+		<table >
+			   <tr>
+				<td>Ticket No. : <input type="text" value="8"  id="ticket" name="ticket" size="3" /></td>
+				<td><p>Detalle de la Venta actual</p></td>
+				<td><img src='../img/carro.png' width='24px' height='24px' class='carro'></td>
+			   </tr>
+		</table>
+			<hr>
 			<form name="form_venta" id="formVenta" >
-			<div id="mensaje_venta"></div>
-			<div id="lista_pizza">
 				
+			<div id="mensaje_venta"></div>
+			<div id="lista_pizza">	
 				<ul></ul>
 			</div>
 			<hr>
-
-				<input type="submit" class="button" value="Enviar" id="btnEnviar"/>
-				<input type="submit" class="button" value="Cancelar" id="btnCancelar"/>	
+			<table><tr><td><input type="submit" class="button" value="Enviar" id="btnEnviar"/></td><td><input type="submit" class="button" value="Cancelar" id="btnCancelar"/>	</td><div id="espera_venta"></div><td></td></tr></table>
+				
+				
 			</form>
-			<div id="espera_venta"></div>
-			</article>
+			
+		</article>
 		</div>
 	</section>
 	<footer>
@@ -88,6 +78,3 @@ $mPizza = new ModeloPizza();
 	</footer>
 </body>
 </html>
-<?php
-
-?>

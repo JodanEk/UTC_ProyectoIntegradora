@@ -1,6 +1,7 @@
 $(function(){ 
+
     $("#btnEnviar").on("click",enviarVenta);
-		$(".botones").on("click","article",agregarLista);
+		$(".add_pizza").on("click",agregarLista);
     $("#btnGuardar").on("click",registrarUsuario);
     $("#btnGuardarP").on("click",registrarPizza);
     $(".delUser").on("click",EliminarUsuario);
@@ -9,35 +10,58 @@ $(function(){
     $("#btnModificar_piz").on("click",modificarPizza);
     $(".actualizarUsuario").on("click",enviarDatoUsuario);
     $(".actualizarPizza").on("click",enviarDatoUPizza);
-		$('#lista_pizza > ul').on("click","li > a",eliminarLista);
-    $('.clsEliminarElemento').on('click',eliminarLista);
-    //$("#suma").on('click',cont);
-		//$('#btnEnviar').on("click",enviarPizza);
+		$('#lista_pizza > ul').on("click","tr td > img",eliminarLista);
 		$(".menu").on("click","a",MenuIndex);
 		$(".menu").on("click","a",MenuDisplay);
 		$("#btnEntrar").on("click",login);
-    //$("#btnRegistrar").on("click",registrar);
-    //$("#btnAgregarPizza").on("click",agregarPizza);
+    $(".cambiaStatus").on("click",cambiarStatus);
 		$(document).ready(focus);
 		$(document).ready(slider);
-    $(document).ready(consulta);
+    $(document).ready(mostrarPedido);
     //$.ajaxSetup({ cache:false });
     
  
 });
 
+                                                                                                                                                                                                                                                                          
+    function cambiarStatus(){
+      ticket = this.name;
+      //alert(ticket);
+      $.ajax({
+        type: 'POST',
+        url:'../controlador/controlador_venta.php',
+        data: 'updStatus='+ticket,
+        success: function(datos){ 
+            alert(datos);
+            if(datos==1){
+            $(this).parent().parent().parent().parent().parent().parent().fadeOut("slow");
+
+            }
+            else{
+              alert("Registro perdido!")
+            }
+           },
+           beforeSend:function()
+           {
+            //alert("enviando");
+           }
+      });
+      return false;
+    }
+
 function enviarVenta(){
   
   var array = $('#formVenta').serialize();
+  var user = $("#user").val();
   var ticket = $("#ticket").val();
-
           $.ajax({
            type: "POST",
            url: "../controlador/controlador_venta.php",
-            data: array,
+            data: array+"&ticket="+ticket+"&user="+user,
            success: function(dato){ 
+            //alert(dato);
             if(dato==1){
-             
+              
               $("#espera_venta").html("Dato(s) enviado a cocina!");
               $("#espera_venta").fadeOut(3000);
               $("#mensaje_venta").html("Puedes realizar otra venta");
@@ -59,31 +83,40 @@ function enviarVenta(){
 
 		
 
-function agregarLista (){
+function agregarLista(){
       //$('#lista_pizza').html("");
-			var lista = $('#lista_pizza > ul');
       
+			var lista = $('#lista_pizza > ul');
+      var nom = $(this).parent().parent().children('td:eq(0)').text();
+      var tam = $(this).parent().parent().children('td:eq(1)').text();
+      var pre = $(this).parent().parent().children('td:eq(2)').text();
+//value="' + tipo_contacto + '"/>
 
-      var img = '<a class="clsEliminarElemento"></a>';
-      var n = '<td><input type="text" value="napoli" name="nom[]" size="5" /></td>';
-      var t = '<td><input type="text" value="mediana" name="tam[]" size="5" readonly="readonly" /></td>';
-      var p = '<td><input type="text" value="55" name="pre[]" size="1" readonly="readonly"/>';
-      var c = '<td><input type="text" value="1" name="cant[]" id="cant" size="1" readonly="readonly" /></td>';
+      var img = "<td><img src='../img/eliminar.ico' width='24px' height='24px' class='delPizza'></td>";
+      var n = '<td><input type="text" id="nom_v" value="'+nom+'" name="nom[]" size="6" readonly="readonly" /></td>';
+      var t = '<td><input type="text" id="tam_v" value="'+pre+'" name="tam[]" size="5" readonly="readonly" /></td>';
+      var p = '<td><input type="text" id="pre_v" value="'+tam+'" name="pre[]" size="1" readonly="readonly"/>';
+      var c = '<td><input type="text" id="cant" value="1" name="cant[]" id="cant" size="1" readonly="readonly" /></td>';
       var a = '<td><button onclick="sum(); return false" class="button">+</button></td>';
       var d= '<td><button onclick="rest(); return false" class="button">-</button></td>';
-      var tr = img+n+t+p+a+c+d;
+
+
+
+      var tr = "<table id='t_venta'><tr>"+n+t+p+a+c+d+img+"</tr></table>";
 			var liNuevoNombre = $('<li/>').html(tr);
 			lista.append(liNuevoNombre);
+
 		};
 		
 		 function eliminarLista(){
 			var lista=$(this);
-			lista.parent().remove();
+			lista.parent().parent().parent().parent().parent().remove();
 
 	}
 
 
   function sum(){
+
     var cant = $("#cant").val();
     var res = parseInt(cant);
     if(res >= 10){
@@ -124,14 +157,7 @@ function agregarLista (){
 			}
 				
 		function MenuDisplay(){
-
-				if(this.name == "pizza"){
-					$("#contenido").load("pizza.php");
-				}
-				else if(this.name == "usuario"){
-					$("#contenido").load("usuario.php");
-				}
-        else if(this.name == "display"){
+        if(this.name == "display"){
           $("#contenido").load("display.php");
         }
           else if(this.name == "venta_dia"){
@@ -166,17 +192,15 @@ function validaciones(){
             }
         }
 
-	function login() {	
-    alert(123);
-		 username=$("#usuario").val();
+          function login() {  
+     username=$("#usuario").val();
           password=$("#contra").val();
           $.ajax({
            type: "POST",
            url: "../controlador/controlador_usuario.php",
             data: "usuario="+username+"&contra="+password,
            success: function(datos){ 
-            
-             if(datos==1){
+              if(datos==1){
              window.location="../vista/admin.php";
             }
             else{
@@ -190,17 +214,58 @@ function validaciones(){
            }
           });
         return false;
-	}
+  }
+	/*function login() {	
+		 username=$("#usuario").val();
+          password=$("#contra").val();
+          $.ajax({
+           type: "POST",
+           url: "../controlador/controlador_usuario.php",
+            data: "usuario="+username+"&contra="+password,
+            dataType: 'json',
+           success: function(resp){ 
 
-	/*function consulta(){
+             if(!resp.error){
+              var login = '<h3>Bienvenido, '+ resp.nombre+ ' ' + resp.apellido + '!</h3><p> <a href="logout.php">Logout</a></p>';  
+             //window.location.href="../vista/admin.php";
+            }
+            else{
+            validaciones();
+            }
+           },
+           beforeSend:function()
+           {    
+            $("#result").css({"background-color":"yellow","color":"black","font-size":"14px","border-radius":"2px"});
+            $("#result").html("cargando...")
+           }
+          });
+        return false;
+	}*/
+
+    /*function login() {  
+     username=$("#usuario").val();
+          password=$("#contra").val();
+          $.post("../controlador/controlador_usuario.php", "usuario="+username+"&contra="+password, function(resp){
+             if(!resp.error){
+              var login = '<h3>Bienvenido, '+ resp.nombre+ ' ' + resp.apellido + '!</h3><p> <a href="logout.php">Logout</a></p>';  
+             //window.location.href="../vista/admin.php";
+            }
+            else{
+            validaciones();
+            }
+          } 'json');
+        return false;
+  }*/
+
+	function mostrarPedido(){
+    var tickets = $("#formPedido").val;
    setInterval(function() {  
        $("#consulta").html("amado");
        
        $.ajax({
         type: 'POST',
-        url:'../controlador/controlador_usuario.php',
-        data: 'id_eliminar='+id_usuario,
-        cache : false,
+        url:'../controlador/controlador_venta.php',
+        data: tickets,
         success: function(datos){ 
             //alert(datos);
             if(datos==1){
@@ -210,7 +275,7 @@ function validaciones(){
 
             }
             else{
-              alert("Registro perdido!")
+              
             }
            },
            beforeSend:function()
@@ -220,7 +285,7 @@ function validaciones(){
       });
       return false;
     }, 2000);
-}*/
+}
 
   function slider(){
     $('#slider div:gt(0)').show();
@@ -230,7 +295,7 @@ function validaciones(){
          .end().appendTo('#slider');}, 4000);
 }
 
-function validacionesRegistro(){
+function validacionesModificacion(){
             nombre=$("#nom_mod").val();
           apellido=$("#ape_mod").val();
           telefono=$("#tel_mod").val();
@@ -241,67 +306,90 @@ function validacionesRegistro(){
              if(nombre == ""){
             css;
             $("#mensaje_mod").html("Llenar campo nombre <img src='../img/editar.png' width='16px' height='16px'> ");
-            $("#nombre").focus();  
+            $("#nom_mod").focus();  
             return false;       
             }
             else if(apellido == ""){
             css;
             $("#mensaje_mod").html("Llenar campo apellido <img src='../img/editar.png' width='16px' height='16px'>");
-            $("#apellido").focus();
+            $("#ape_mod").focus();
             return false;
             }
              else if(telefono == ""){
             css;
             $("#mensaje_mod").html("Llenar campo telefono <img src='../img/editar.png' width='16px' height='16px'>");
-            $("#telefono").focus();
+            $("#tel_mod").focus();
             return false;
             }
              else if(direccion == ""){
             css;
             $("#mensaje_mod").html("Llenar campo direccion <img src='../img/editar.png' width='16px' height='16px'>");
-            $("#direccion").focus();
+            $("#dir_mod").focus();
             return false;
             }
             else if(usuario == ""){
             css;
             $("#mensaje_mod").html("Llenar campo usuario <img src='../img/editar.png' width='16px' height='16px'>");
-            $("#usuario_reg").focus();
+            $("#usu_mod").focus();
             return false;
             }
             else if(contra == ""){
             css;
             $("#mensaje_mod").html("LLenar campo contraseña <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#con_mod").focus();
+            return false;
+            }
+            return true;
+        }
+
+        function validacionesRegistro(){
+          nombre=$("#nombre").val();
+          apellido=$("#apellido").val();
+          telefono=$("#telefono").val();
+          direccion=$("#direccion").val();
+          usuario=$("#usuario_reg").val();
+          contra=$("#contra_reg").val();
+  var css = $("#mensaje").css({"background-color":"#F2F5A9","color":"black","font-size":"14px","border-radius":"5px","display":"inline-block"});
+             if(nombre == ""){
+            css;
+            $("#mensaje").html("Llenar campo nombre <img src='../img/editar.png' width='16px' height='16px'> ");
+            $("#nombre").focus();  
+            return false;       
+            }
+            else if(apellido == ""){
+            css;
+            $("#mensaje").html("Llenar campo apellido <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#apellido").focus();
+            return false;
+            }
+             else if(telefono == ""){
+            css;
+            $("#mensaje").html("Llenar campo telefono <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#telefono").focus();
+            return false;
+            }
+             else if(direccion == ""){
+            css;
+            $("#mensaje").html("Llenar campo direccion <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#direccion").focus();
+            return false;
+            }
+            else if(usuario == ""){
+            css;
+            $("#mensaje").html("Llenar campo usuario <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#usuario_reg").focus();
+            return false;
+            }
+            else if(contra == ""){
+            css;
+            $("#mensaje").html("LLenar campo contraseña <img src='../img/editar.png' width='16px' height='16px'>");
             $("#contra_reg").focus();
             return false;
             }
             return true;
         }
 
-function validacionesPizza(){
-          piz=$("#piz").val();
-          pre=$("#pre").val();
-          tam=$("#tam").val();
-	var css = $("#mensaje_p").css({"background-color":"#F2F5A9","color":"black","font-size":"14px","border-radius":"5px","display":"inline-block"});
-	           if(piz == ""){
-            css;
-            $("#mensaje_p").html("Llenar campo nombre <img src='../img/editar.png' width='16px' height='16px'> ");
-            $("#piz").focus();  
-            return false;       
-            }
-            else if(pre == ""){
-            css;
-            $("#mensaje_p").html("Llenar campo precio <img src='../img/editar.png' width='16px' height='16px'>");
-            $("#pre").focus();
-            return false;
-            }
-             else if(tam == ""){
-            css;
-            $("#mensaje_p").html("Llenar campo tamaño <img src='../img/editar.png' width='16px' height='16px'>");
-            $("#tam").focus();
-            return false;
-            }
-            return true;
-        }
+
 
           function registrarUsuario(){
 
@@ -327,9 +415,6 @@ function validacionesPizza(){
             $("#mensaje").html("Registro correcto <img src='../img/palomita.png width='24px' height='24px' > ");
             //$("#formRegistro").slideToggle();
               //$("#contenido").load("usuario.php");
-            
-            
-
             }
            },
            beforeSend:function()
@@ -341,7 +426,7 @@ function validacionesPizza(){
         return false;
           }
       
-          return false;
+      return false;
     }
 
     function EliminarUsuario(){
@@ -388,7 +473,7 @@ function validacionesPizza(){
 
 
     function modificarUsuario(){
-     
+    if(validacionesModificacion()){
 
 
           var id_mod_u=$("#id_mod_u").val();
@@ -420,9 +505,37 @@ function validacionesPizza(){
            }
           });
         return false;
+        }
+        return false;
       
     }
 //////////////////////// Pizza //////////////////
+
+function validacionesPizza(){
+          piz=$("#piz").val();
+          pre=$("#pre").val();
+          tam=$("#tam").val();
+  var css = $("#mensaje_p").css({"background-color":"#F2F5A9","color":"black","font-size":"14px","border-radius":"5px","display":"inline-block"});
+             if(piz == ""){
+            css;
+            $("#mensaje_p").html("Llenar campo nombre <img src='../img/editar.png' width='16px' height='16px'> ");
+            $("#piz").focus();  
+            return false;       
+            }
+            else if(pre == ""){
+            css;
+            $("#mensaje_p").html("Llenar campo precio <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#pre").focus();
+            return false;
+            }
+             else if(tam == ""){
+            css;
+            $("#mensaje_p").html("Llenar campo tamaño <img src='../img/editar.png' width='16px' height='16px'>");
+            $("#tam").focus();
+            return false;
+            }
+            return true;
+        }
 
           function registrarPizza(){
             if(validacionesPizza()){

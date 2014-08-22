@@ -11,7 +11,7 @@ $row=mysql_fetch_assoc($res);
 
 if( $num_row == 1) {
     echo 1;
-    $_SESSION['uName'] = $row['usuario'];
+    $_SESSION['usuario'] = $row['usuario'];
     $_SESSION["autenticado"]= "SI";
     //echo "<script>window.location="index.php</script>";
     }

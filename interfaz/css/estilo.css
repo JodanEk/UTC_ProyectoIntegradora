@@ -1,5 +1,64 @@
 @charset "utf-8";
 
+
+/* Contenedor de pedidos*/
+
+.container {
+
+	display: inline-block;
+    max-width: 200px;
+    max-height: 500px;
+    margin: 10px;
+    border: 1px solid #fff;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 7px #292929;
+    -moz-box-shadow: 0px 2px 7px #292929;
+    -webkit-box-shadow: 0px 2px 7px #292929;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+.mainbody,
+.header,
+.footer {
+    padding: 5px;
+}
+.mainbody {
+    margin-top: 0;
+    max-height:auto;
+    overflow: auto;
+}
+.header {
+    height: auto;
+    border-bottom: 1px solid #EEE;
+    background-color: whiteSmoke;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: black;
+
+}
+
+
+.footer {
+    height: auto;
+    background-color: whiteSmoke;
+    border-top: 1px solid #DDD;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+table#pedidos tr{
+	border-bottom: 1px solid whiteSmoke
+}
+/* diseño de las interfaces*/
 .login_perfil{
 	text-align: right;
 	color:black;
@@ -7,8 +66,22 @@
 	
 }
 
+
+input { 
+border: none;
+border-radius: 2px;
+background-color:white; 
+font-size: 12px;
+} 
+
 img{
 	cursor: pointer;
+	opacity: .8;
+}
+
+img:hover{
+	cursor: pointer;
+	opacity: 1;
 }
 
 body {
@@ -94,6 +167,17 @@ ul.menu{
 }
 
 @media all and (max-width: 480px){
+
+	#carrito{
+	width: 90%;
+	float: none;
+	}
+	#botones{
+	width: 90%;
+	float: none;
+
+
+	}
 	header{
 		font-size: 12px;
 		margin: 0;
@@ -116,6 +200,7 @@ ul.menu{
     display: inline-block;
 	border-radius: 5px;
 	background: white;
+	font-size: 10px;
 	font-family: 'Lobster' , cursive; 
 	margin-left: 5px;
 	margin-top: 5px;
@@ -138,7 +223,7 @@ ul.menu{
 }
   
 
-	article#boton_pizza{
+	#pizza_tr{
 	font-size: 8px;
 
 }
@@ -349,21 +434,13 @@ article#login .button:hover{
 	transition: all 0.1s ease-in ;
 }
 
-#lista_pizza{
-	text-align: right;
-	overflow: scroll;
-	height: 70px;
-	font-family: 'Lobster' , cursive;
-	font-size: 12px;
-}
-
 article#carrito{
 	text-align: center;
 	border-radius: 5px;
 	background: white;
-	float: left;
+	float: right;
 	font-family: 'Lobster' , cursive; 
-	width: 50%;
+	width: 40%;
 	height: 250px;
 }
 article#botones{
@@ -371,7 +448,7 @@ article#botones{
 	border-radius: 5px;
 	background: white;
 	font-family: 'Lobster' , cursive; 
-	width: 48%;
+	width: 56%;
 	height: 250px;
 }
 
@@ -390,36 +467,35 @@ footer{
 
 
 #lista_pizza{
-	text-align: center;
-	width: 80%;
+	text-align: right;
+	width: 90%;
 	height: 100px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 #lista_pizza ul{
 	list-style-type: none;
 }
 #lista_pizza ul li{
-	padding: 1px;
-	border-radius: 3px;
+	border-radius: 2px;
+	text-align: right;
+	width: auto;
 }
 
 #lista_pizza ul li:nth-child(odd){
-	border:1px dashed black;
-	margin-bottom:1px; 
+	border-bottom:1px solid gray;
 	margin-top:1px;
 	background: white;
 }
 
 #lista_pizza ul li:nth-child(odd):hover{
-	border:1px dashed black;
-	background: #D8F781;
+	background: #F2F2F2;
 	margin-bottom:1px; 
 	margin-top:1px;
 	
 }
 #lista_pizza ul li:nth-child(odd):active{
-	border:1px dashed black;
+	border-bottom:1px solid orange;
 	background: orange;
 	margin-bottom:1px; 
 	margin-top:1px;
@@ -427,31 +503,17 @@ footer{
 }
 #lista_pizza ul li:nth-child(even){
 	background: white;
-	border:1px dashed black;
+	border-bottom:1px solid gray;
 }
 #lista_pizza ul li:nth-child(even):active{
-	border:1px dashed black;
+	border-bottom:1px solid orange;
 	background: orange;
 	margin-bottom:1px; 
 	margin-top:1px;
 }
 
 #lista_pizza ul li:nth-child(even):hover{
-	background: #D8F781;
-}
-#lista_pizza ul li a.clsEliminarElemento{
-	padding: 6px;
-	background: #fff url(../img/eliminar.ico) center no-repeat;
-	width: 10px;
-	height: 10px;
-	border-radius:5%;	
-	display: inline-block;
-	
-	
-	
-}
-	#lista_pizza ul li a.clsEliminarElemento:hover{
-	border-color: #f00;
+	background: #F2F2F3;
 }
 
 .button{
@@ -459,7 +521,7 @@ footer{
 	border-radius:3px;
 	color:white;
 	font-family: 'lobster', cursive;
-	font-size: 16px;
+	font-size: 12px;
 	background:#8A0808;	
 	-ms-transition: all 0.1s ease-in ;
 	-moz-transition: all 0.1s ease-in ;
@@ -474,7 +536,7 @@ footer{
 	list-style-type:none;
 	color: white;
 	font-family: 'lobster', cursive;
-	font-size: 16px;
+	font-size: 13px;
 	background:#088A08;	
 	-ms-transition: all 0.1s ease-in ;
 	-moz-transition: all 0.1s ease-in ;
@@ -488,7 +550,7 @@ footer{
 	border-radius:3px;
 	color:white;
 	font-family: 'lobster', cursive;
-	font-size: 16px;
+	font-size: 12px;
 	background:gray;	
 	-ms-transition: all 0.1s ease-in ;
 	-moz-transition: all 0.1s ease-in ;
@@ -503,7 +565,7 @@ footer{
 	list-style-type:none;
 	color: white;
 	font-family: 'lobster', cursive;
-	font-size: 16px;
+	font-size: 12px;
 	background:black;	
 	-ms-transition: all 0.1s ease-in ;
 	-moz-transition: all 0.1s ease-in ;
@@ -518,7 +580,7 @@ footer{
 	list-style-type:none;
 	color: black;
 	font-family: 'lobster', cursive;
-	font-size: 16px;
+	font-size: 12px;
 	background:white;	
 	-ms-transition: all 0.1s ease-in ;
 	-moz-transition: all 0.1s ease-in ;
@@ -528,10 +590,12 @@ footer{
 }
 
 article#lista_pedido {
+	text-align: left;
 	border-radius: 5px;
 	background: white;
 	display: inline-block;
 	font-family: 'Lobster' , cursive;
+	font-size: 12px:;
 	margin-left: 5px;
 	margin-top: 5px;
 	padding-bottom: 5px;
@@ -551,7 +615,6 @@ article#lista_pedido {
 .tabla {
 font-family: 'Lobster' , cursive;
  background: #fff;
-  overflow: hidden;
    border: 1px solid #991821;
     -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
